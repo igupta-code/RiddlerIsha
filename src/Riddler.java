@@ -1,3 +1,5 @@
+import java.sql.SQLOutput;
+
 /**
  * The Riddler:
  * A puzzle by Zach Blick
@@ -10,8 +12,38 @@ public class Riddler {
 
     public String decryptOne(String encrypted) {
         String decrypted = "";
+        int letter = 0;
+        System.out.println("A: " + (int)'A');
+        System.out.println("Z: " + (int)'Z');
+        System.out.println("a: " + (int)'a');
+        System.out.println("z: " + (int)'z');
+        for (int i = 0; i < encrypted.length(); i++) {
+            letter = encrypted.charAt(i);
+            if(letter >= 'a' && letter <= 'z'){
+                letter += 9;
+                if(letter > 'z'){
+                    decrypted += (char)(letter - 'z' - 1 + 'a');
+                }
+                else {
+                    decrypted += (char) (letter);
+                }
+            }
+            else if((letter >= 'A' && letter <= 'Z')){
+                letter += 9;
+                if(letter > 'Z'){
+                    decrypted += (char)(letter - 'Z' + 'A' -1);
+                }
+                else {
+                    decrypted += (char) (letter);
+                }
+            }
+            else{
+                decrypted += (char) letter;
+            }
 
-        // TODO: Complete the decryptOne() function.
+        }
+
+        System.out.println(decrypted);
 
         return decrypted;
     }
